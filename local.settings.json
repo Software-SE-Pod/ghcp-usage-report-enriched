@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "GITHUB_ENTERPRISE": "your-enterprise-slug",
+    "GITHUB_TOKEN": "your-github-token"
+  }
+}
