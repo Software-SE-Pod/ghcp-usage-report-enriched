@@ -2,6 +2,24 @@
 
 Azure Function that fetches enterprise Copilot metrics and stores in blob storage.
 
+## Prerequisites
+
+### Windows
+
+```powershell
+winget install Microsoft.AzureCLI
+winget install Microsoft.Azure.FunctionsCoreTools
+az login
+```
+
+### Mac/Linux
+
+```bash
+brew install azure-cli
+brew install azure-functions-core-tools@4
+az login
+```
+
 ## Deploy (Windows PowerShell)
 
 ```powershell
@@ -14,7 +32,7 @@ $func = "func-copilot-metrics$(Get-Random -Max 9999)"
 # Create resources
 az group create -n $rg -l $loc
 az storage account create -n $storage -g $rg -l $loc --sku Standard_LRS --allow-shared-key-access true
-az functionapp create -n $func -g $rg -s $storage --consumption-plan-location $loc --runtime python --runtime-version 3.11 --functions-version 4 --os-type Linux
+az functionapp create -n $func -g $rg -s $storage --flexconsumption-location $loc --runtime python --runtime-version 3.11
 
 # Configure
 az functionapp config appsettings set -n $func -g $rg --settings GITHUB_ENTERPRISE=your-enterprise-slug GITHUB_TOKEN=your-token
@@ -35,7 +53,7 @@ func="func-copilot-metrics$RANDOM"
 # Create resources
 az group create -n $rg -l $loc
 az storage account create -n $storage -g $rg -l $loc --sku Standard_LRS --allow-shared-key-access true
-az functionapp create -n $func -g $rg -s $storage --consumption-plan-location $loc --runtime python --runtime-version 3.11 --functions-version 4 --os-type Linux
+az functionapp create -n $func -g $rg -s $storage --flexconsumption-location $loc --runtime python --runtime-version 3.11
 
 # Configure
 az functionapp config appsettings set -n $func -g $rg --settings GITHUB_ENTERPRISE=your-enterprise-slug GITHUB_TOKEN=your-token
